@@ -128,6 +128,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //register
+        //... logikata
         this.setVisible(false);
         LoginForm lf = new LoginForm();
         lf.setVisible(true);
