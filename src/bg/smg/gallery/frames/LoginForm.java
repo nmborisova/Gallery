@@ -5,6 +5,7 @@
  */
 package bg.smg.gallery.frames;
 
+import bg.smg.gallery.model.User;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,12 +16,14 @@ import javax.swing.JOptionPane;
  * @author n.m.borisova
  */
 public class LoginForm extends javax.swing.JFrame {
-
+    private User user;
     /**
      * Creates new form LoginForm
      */
-    public LoginForm() {
+    public LoginForm(User user) {
         initComponents();
+        if(user==null) user = new User();
+        this.user = user;
     }
 
     /**
@@ -172,8 +175,9 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
             String username = jTextField1.getText();
             String password = jPasswordField1.getPassword().toString();
-       
-            boolean loginSuccessful = true;
+            boolean loginSuccessful = false;
+            if(username.equals(user.getUsername()) && password.equals(user.getPassword()))
+                loginSuccessful=true;
             if(loginSuccessful){
                 this.setVisible(false);
                 MainFrame mf = new MainFrame();
@@ -239,7 +243,7 @@ public class LoginForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginForm().setVisible(true);
+                new LoginForm(null).setVisible(true);
             }
         });
     }

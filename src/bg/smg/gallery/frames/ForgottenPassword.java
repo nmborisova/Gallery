@@ -164,7 +164,7 @@ public class ForgottenPassword extends javax.swing.JFrame {
         // TODO add your handling code here:
         //code for DB save of user
         this.setVisible(false);
-        LoginForm lf = new LoginForm();
+        LoginForm lf = new LoginForm(null);
         lf.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
