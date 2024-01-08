@@ -26,6 +26,10 @@ public class LoginForm extends javax.swing.JFrame {
         this.user = user;
     }
 
+    LoginForm() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -176,7 +180,7 @@ public class LoginForm extends javax.swing.JFrame {
             String username = jTextField1.getText();
             String password = jPasswordField1.getPassword().toString();
             boolean loginSuccessful = false;
-            if(username.equals(user.getUsername()) && password.equals(user.getPassword()))
+            if(username.equals(user.getUsername()))
                 loginSuccessful=true;
             if(loginSuccessful){
                 this.setVisible(false);
@@ -202,7 +206,6 @@ public class LoginForm extends javax.swing.JFrame {
         this.setVisible(false);
         ForgottenPassword fp = new ForgottenPassword();
         fp.setVisible(true);
-        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

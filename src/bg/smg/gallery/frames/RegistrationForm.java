@@ -172,7 +172,8 @@ public class RegistrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:                                        
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -223,4 +224,8 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPwdNewPassword2;
     private javax.swing.JTextField jTxtNewUserUsername;
     // End of variables declaration//GEN-END:variables
+
+    private Object LoginForm() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
