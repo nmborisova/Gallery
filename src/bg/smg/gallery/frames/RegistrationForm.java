@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author n.m.borisova
  */
-public class RegistrationForm extends javax.swing.JFrame {
+public class RegistrationForm extends javax.swing.JFrame{
 
     /**
      * Creates new form RegistrationForm
@@ -23,7 +23,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         initComponents();
         setTitle("Банково приложение");
     }
-
+    Data data = new Data();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -151,29 +151,29 @@ public class RegistrationForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //register
-        String username = jTxtNewUserUsername.getText();
-        String password = jPwdNewPassword.getPassword().toString();
-        String password2 = jPwdNewPassword2.getPassword().toString();
-        System.out.println(password);
-        System.out.println(password2);
-        //if(password.equals(password2)){
+    	String username = jTxtNewUserUsername.getText();
+    	String password = String.valueOf(jPwdNewPassword.getPassword());
+//    	String password = jPwdNewPassword.getPassword().toString();
+//    	String passwordRepeat = jPwdNewPassword2.getPassword().toString();
+        
+        
             User user = new User();
             user.setUsername(username);
             user.setPassword(password);
-            this.setVisible(false);
-            LoginForm lf = new LoginForm(user);
-            lf.setVisible(true);           
-        //} else {
-        /*     JOptionPane.showMessageDialog(this,
-                    "Моля въведете правилните паролi!",
-                    "Greshka",
-                    JOptionPane.WARNING_MESSAGE);*/
-        //}
-    }//GEN-LAST:event_jButton1ActionPerformed
+            
+            data.users.add(user);
+            
+            this.dispose();
+            LoginForm loginForm = new LoginForm(data);
+            loginForm.setVisible(true);           
+    }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:                                        
-        this.setVisible(false);
+//        this.setVisible(false);
+    	this.dispose();
+        LoginForm loginForm = new LoginForm(data);
+        loginForm.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

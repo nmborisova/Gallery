@@ -15,10 +15,17 @@ import java.util.List;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+	private User currentUser;
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
+        initComponents();
+        jPanel2.setVisible(false);
+    }
+    
+    public MainFrame(User user) {
+    	this.currentUser = user;
         initComponents();
         jPanel2.setVisible(false);
     }

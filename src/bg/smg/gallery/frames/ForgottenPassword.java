@@ -10,7 +10,7 @@ package bg.smg.gallery.frames;
  * @author n.m.borisova
  */
 public class ForgottenPassword extends javax.swing.JFrame {
-
+	private Data data = new Data();
     /**
      * Creates new form RegistrationForm
      */
@@ -156,17 +156,26 @@ public class ForgottenPassword extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    	this.dispose();
+        LoginForm loginForm = new LoginForm(data);
+        loginForm.setVisible(true);
+    }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         //code for DB save of user
-        this.setVisible(false);
-        LoginForm lf = new LoginForm(null);
-        lf.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    	
+    	//TODO update the user data
+    	//should check if the a user with such username exists.
+    	//if not display a message that such user is not found
+    	//finally change the user data and go back to the login page
+    	
+        this.dispose();
+        LoginForm loginForm = new LoginForm(data);
+        loginForm.setVisible(true);
+    }
 
     /**
      * @param args the command line arguments

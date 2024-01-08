@@ -17,17 +17,23 @@ import javax.swing.JOptionPane;
  */
 public class LoginForm extends javax.swing.JFrame {
     private User user;
+    private Data data;
     /**
      * Creates new form LoginForm
      */
-    public LoginForm(User user) {
+//    public LoginForm(User user) {
+//        initComponents();
+//        if(user==null) user = new User();
+//        this.user = user;
+//    }
+    
+    public LoginForm(Data data) {
         initComponents();
-        if(user==null) user = new User();
-        this.user = user;
+        this.data = data;
     }
 
     LoginForm() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        initComponents();
     }
 
     /**
@@ -177,26 +183,43 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+    	//Login function
             String username = jTextField1.getText();
-            String password = jPasswordField1.getPassword().toString();
+//            String password = jPasswordField1.getPassword().toString();
+            String password = String.valueOf(jPasswordField1.getPassword());
             boolean loginSuccessful = false;
-            if(username.equals(user.getUsername()))
-                loginSuccessful=true;
-            if(loginSuccessful){
-                this.setVisible(false);
-                MainFrame mf = new MainFrame();
-                mf.setVisible(true);
-            } else {
+            
+            User currentUser = new User();
+            
+            for(int i = 0; i < data.users.size(); i++)
+            {
+            	System.out.print("Your password: " + " " + password + " ... users data ... " + data.users.get(i).getUsername() + "      " + data.users.get(i).getPassword());
+            	if(data.users.get(i).getUsername().equals(username) && data.users.get(i).getPassword().equals(password))
+            	{
+            		loginSuccessful = true;
+            		currentUser = new User(username, password);
+            	}
+            }
+            
+            if(loginSuccessful)
+            {
+                this.dispose();
+                MainFrame mainFrame = new MainFrame(currentUser);
+                mainFrame.setVisible(true);
+            }
+            else
+            {
                     JOptionPane.showMessageDialog(this,
                     "Моля въведете правилните потребител и парола!",
                     "Грешен вход",
                     JOptionPane.WARNING_MESSAGE);
             }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        this.setVisible(false);
+//        this.setVisible(false);
+        this.dispose();
         RegistrationForm rf = new RegistrationForm();
         rf.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
