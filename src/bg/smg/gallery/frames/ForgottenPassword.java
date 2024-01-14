@@ -5,6 +5,9 @@
  */
 package bg.smg.gallery.frames;
 
+import bg.smg.gallery.model.User;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author n.m.borisova
@@ -14,9 +17,15 @@ public class ForgottenPassword extends javax.swing.JFrame {
     /**
      * Creates new form RegistrationForm
      */
-    public ForgottenPassword() {
+    ForgottenPassword() {
         initComponents();
-        setTitle("Банково приложение");
+        setTitle("Галерия - забравена парола");
+    }
+    
+    public ForgottenPassword(Data data) {
+        initComponents();
+        setTitle("Галерия - забравена парола");
+        this.data = data;
     }
 
     /**
@@ -49,6 +58,12 @@ public class ForgottenPassword extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(153, 0, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Забравена");
+
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Смени парола");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +171,10 @@ public class ForgottenPassword extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     	this.dispose();
@@ -171,7 +190,43 @@ public class ForgottenPassword extends javax.swing.JFrame {
     	//should check if the a user with such username exists.
     	//if not display a message that such user is not found
     	//finally change the user data and go back to the login page
-    	
+        
+        String username = jTextField1.getText();
+        String password = String.valueOf(jPasswordField1.getPassword());
+        String password2 = String.valueOf(jPasswordField2.getPassword());
+        // String newPassword = String.valueOf(jPasswordField1.getPassword());
+        boolean changeSuccessful = false;
+        // User currentUser = new User();
+        System.out.print("Your password: " + " " + password + " ... users data ... " + username+ " ... size ... " + data.users.size());    
+    	for(int i = 0; i < data.users.size(); i++)
+            {
+            	System.out.print("Your password: " + " " + password + " ... users data ... " + data.users.get(i).getUsername() + "      " + data.users.get(i).getPassword());
+            	if(data.users.get(i).getUsername().equals(username))
+            	{
+            		
+                    System.out.print("\nYour password: " + " " + password);
+                    if (password.equals(password2)) {
+                        data.users.get(i).setPassword(password);
+                        changeSuccessful = true;
+                            
+                    }
+            		
+            	}
+            }
+            if(changeSuccessful)
+            {
+                this.dispose();
+                LoginForm loginForm = new LoginForm(data);
+                loginForm.setVisible(true);  
+            }
+            else
+            {
+                    JOptionPane.showMessageDialog(this,
+                    "Невалиден потребител или различни пароли!",
+                    "Смяна неуспешна",
+                    JOptionPane.WARNING_MESSAGE);
+            }
+                   
         this.dispose();
         LoginForm loginForm = new LoginForm(data);
         loginForm.setVisible(true);

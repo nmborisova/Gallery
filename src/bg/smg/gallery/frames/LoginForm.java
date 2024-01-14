@@ -181,7 +181,7 @@ public class LoginForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
     	//Login function
             String username = jTextField1.getText();
@@ -222,12 +222,12 @@ public class LoginForm extends javax.swing.JFrame {
         this.dispose();
         RegistrationForm rf = new RegistrationForm();
         rf.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }                                        
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        ForgottenPassword fp = new ForgottenPassword();
+        ForgottenPassword fp = new ForgottenPassword(data);
         fp.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -269,7 +269,10 @@ public class LoginForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginForm(null).setVisible(true);
+                User defaultUser = new User("default", "default");
+                Data data = new Data();
+                data.users.add(defaultUser);
+                new LoginForm(data).setVisible(true);
             }
         });
     }

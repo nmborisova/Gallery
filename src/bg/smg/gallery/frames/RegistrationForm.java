@@ -21,7 +21,7 @@ public class RegistrationForm extends javax.swing.JFrame{
      */
     public RegistrationForm() {
         initComponents();
-        setTitle("Банково приложение");
+        setTitle("Галерия - регистрация");
     }
     Data data = new Data();
     /**
@@ -148,21 +148,32 @@ public class RegistrationForm extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         //register
     	String username = jTxtNewUserUsername.getText();
     	String password = String.valueOf(jPwdNewPassword.getPassword());
+        String password2 = String.valueOf(jPwdNewPassword2.getPassword());
 //    	String password = jPwdNewPassword.getPassword().toString();
 //    	String passwordRepeat = jPwdNewPassword2.getPassword().toString();
         
         
             User user = new User();
             user.setUsername(username);
-            user.setPassword(password);
+            if(password.equals(password2))
+            {
+                user.setPassword(password);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,
+                "Моля повторете паролата правилно!",
+                "Регисрация неуспешна",
+                JOptionPane.WARNING_MESSAGE);
+            }
+            // user.setPassword(password);
             
             data.users.add(user);
-            
             this.dispose();
             LoginForm loginForm = new LoginForm(data);
             loginForm.setVisible(true);           
@@ -174,7 +185,7 @@ public class RegistrationForm extends javax.swing.JFrame{
     	this.dispose();
         LoginForm loginForm = new LoginForm(data);
         loginForm.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }                                        
 
     /**
      * @param args the command line arguments
