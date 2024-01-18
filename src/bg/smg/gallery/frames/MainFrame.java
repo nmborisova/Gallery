@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -31,20 +32,23 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void init() {
         initComponents();
+        jPanelPaintingFullScreen.setVisible(false);
         paintings=new ArrayList<>();
         loadPaintings();
         Path resourceDirectory = Paths.get("src","resources");
         String absolutePath = resourceDirectory.toFile().getAbsolutePath();
         Image imgIcon = new ImageIcon(absolutePath+"/bg_gallery.jpeg").getImage();
         JPanelWithBackground pnl = new JPanelWithBackground(imgIcon);
+        pnl.setLayout(null);
         pnl.setBounds(0, 0, 635, 430);
         
         for(Painting p:paintings) {
             JLabel img = new JLabel();
-            ImageIcon icon = new ImageIcon(absolutePath+"/"+p.getImage());
+            ImageIcon icon = new ImageIcon(absolutePath+"/"+p.getIcon());
             img.setIcon(icon);
-            img.setSize(icon.getIconWidth(), icon.getIconHeight());
-            this.add(img);
+            img.setBounds(p.getX() ,p.getY() , icon.getIconWidth(), icon.getIconHeight());
+            img.addMouseListener(l);
+            pnl.add(img);
         }
         getContentPane().add(pnl);
     }
@@ -56,8 +60,11 @@ public class MainFrame extends javax.swing.JFrame {
     
     private void loadPaintings(){
         //TODO file read
-        Painting p = new Painting("Claude Monet", 300000000, 1872, "Impression, Sunrise became the most famous after being debuted in April 1874 in Paris at an exhibition by the group Painters, Scluptors, Engravers etc. Inc .", "Impression" );
-        
+        Painting p = new Painting("Claude Monet", 300000000, 1872, "Impression, Sunrise became the most famous after being debuted in April 1874 in Paris at an exhibition by the group Painters, Scluptors, Engravers etc. Inc .", "ImpressionIcn.jpg", "Impression.jpg", 70,70 );
+        paintings.add(p);
+        p = new Painting("Claude Monet", 300000000, 1872, "Impression, Sunrise became the most famous after being debuted in April 1874 in Paris at an exhibition by the group Painters, Scluptors, Engravers etc. Inc .", "Sisley_la_seine_au_point_du_jour_1877Icn.jpg", "Sisley_la_seine_au_point_du_jour_1877.jpg", 170,170 );
+        paintings.add(p);
+        p = new Painting("Claude Monet", 300000000, 1872, "Impression, Sunrise became the most famous after being debuted in April 1874 in Paris at an exhibition by the group Painters, Scluptors, Engravers etc. Inc .", "The_ScreamIcn.jpg", "The_Scream.jpg", 270,270 );
         paintings.add(p);
     }
 
@@ -70,6 +77,10 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelPaintingFullScreen = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jLblAuthorName = new javax.swing.JLabel();
+        jLblPainting = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -86,6 +97,39 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jButton1.setText("X");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelPaintingFullScreenLayout = new javax.swing.GroupLayout(jPanelPaintingFullScreen);
+        jPanelPaintingFullScreen.setLayout(jPanelPaintingFullScreenLayout);
+        jPanelPaintingFullScreenLayout.setHorizontalGroup(
+            jPanelPaintingFullScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPaintingFullScreenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelPaintingFullScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelPaintingFullScreenLayout.createSequentialGroup()
+                        .addComponent(jLblPainting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanelPaintingFullScreenLayout.createSequentialGroup()
+                        .addComponent(jLblAuthorName, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                        .addComponent(jButton1))))
+        );
+        jPanelPaintingFullScreenLayout.setVerticalGroup(
+            jPanelPaintingFullScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPaintingFullScreenLayout.createSequentialGroup()
+                .addGroup(jPanelPaintingFullScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jLblAuthorName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLblPainting, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         jMenu1.setText("Експресионизъм");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,12 +138,27 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jMenu4.setText("Прозорец");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1Item1(evt);
+            }
+        });
         jMenu1.add(jMenu4);
 
         jMenu5.setText("Писъкът ");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1Item2(evt);
+            }
+        });
         jMenu1.add(jMenu5);
 
         jMenu6.setText("Мурнау в църква I");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1Item3(evt);
+            }
+        });
         jMenu1.add(jMenu6);
 
         jMenuBar1.add(jMenu1);
@@ -141,11 +200,17 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 635, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(83, Short.MAX_VALUE)
+                .addComponent(jPanelPaintingFullScreen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 409, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(72, Short.MAX_VALUE)
+                .addComponent(jPanelPaintingFullScreen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();
@@ -159,6 +224,35 @@ public class MainFrame extends javax.swing.JFrame {
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenu1Item1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1Item1
+        // TODO add your handling code here:
+        jLblAuthorName.setText("Sisley_la_seine_au_point_du_jour_1877");
+        jLblPainting.setIcon(new ImageIcon("src/resources/Sisley_la_seine_au_point_du_jour_1877.jpg"));
+        jPanelPaintingFullScreen.setVisible(true);
+    }//GEN-LAST:event_jMenu1Item1
+
+    private void jMenu1Item2(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1Item2
+        // TODO add your handling code here:
+        
+        jLblAuthorName.setText("The_Scream");
+        jLblPainting.setIcon(new ImageIcon("src/resources/The_Scream.jpg"));
+        jPanelPaintingFullScreen.setVisible(true);
+    }//GEN-LAST:event_jMenu1Item2
+
+    private void jMenu1Item3(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1Item3
+        // TODO add your handling code here:
+        
+        jLblAuthorName.setText("Impression");
+        jLblPainting.setIcon(new ImageIcon("src/resources/Impression.jpg"));
+        jPanelPaintingFullScreen.setVisible(true);
+    }//GEN-LAST:event_jMenu1Item3
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        jPanelPaintingFullScreen.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +291,9 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLblAuthorName;
+    private javax.swing.JLabel jLblPainting;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
@@ -210,5 +307,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanelPaintingFullScreen;
     // End of variables declaration//GEN-END:variables
 }

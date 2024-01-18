@@ -14,19 +14,54 @@ public class Painting {
     private double price;
     private int year;
     private String info;
+    private String icon;
     private String image;
+    private int x;
+    private int y;
 
     public Painting() {
     }
 
-    public Painting(String authorName, double price, int year, String info, String image) {
+    public Painting(String authorName, double price, int year, String info, String icon, String image, int x, int y) {
         this.authorName = authorName;
         this.price = price;
         this.year = year;
         this.info = info;
+        this.icon = icon;
         this.image = image;
+        this.x = x;
+        this.y = y;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+ 
+
+    
+    
     public void setImage(String image) {
         this.image = image;
     }
