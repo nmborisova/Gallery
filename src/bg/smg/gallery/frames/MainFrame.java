@@ -47,7 +47,7 @@ public class MainFrame extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(absolutePath+"/"+p.getIcon());
             img.setIcon(icon);
             img.setBounds(p.getX() ,p.getY() , icon.getIconWidth(), icon.getIconHeight());
-            img.addMouseListener(l);
+//            img.addMouseListener(l);
             pnl.add(img);
         }
         getContentPane().add(pnl);
