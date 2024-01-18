@@ -6,8 +6,13 @@
 package bg.smg.gallery.frames;
 
 import bg.smg.gallery.model.User;
+import java.awt.Image;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -16,18 +21,44 @@ import java.util.List;
 public class MainFrame extends javax.swing.JFrame {
 
 	private User currentUser;
+        List<Painting> paintings;
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
+        init();
+    }
+
+    private void init() {
         initComponents();
-       
+        paintings=new ArrayList<>();
+        loadPaintings();
+        Path resourceDirectory = Paths.get("src","resources");
+        String absolutePath = resourceDirectory.toFile().getAbsolutePath();
+        Image imgIcon = new ImageIcon(absolutePath+"/bg_gallery.jpeg").getImage();
+        JPanelWithBackground pnl = new JPanelWithBackground(imgIcon);
+        pnl.setBounds(0, 0, 635, 430);
+        
+        for(Painting p:paintings) {
+            JLabel img = new JLabel();
+            ImageIcon icon = new ImageIcon(absolutePath+"/"+p.getImage());
+            img.setIcon(icon);
+            img.setSize(icon.getIconWidth(), icon.getIconHeight());
+            this.add(img);
+        }
+        getContentPane().add(pnl);
     }
     
     public MainFrame(User user) {
     	this.currentUser = user;
-        initComponents();
+        init();        
+    }
+    
+    private void loadPaintings(){
+        //TODO file read
+        Painting p = new Painting("Claude Monet", 300000000, 1872, "Impression, Sunrise became the most famous after being debuted in April 1874 in Paris at an exhibition by the group Painters, Scluptors, Engravers etc. Inc .", "Impression" );
         
+        paintings.add(p);
     }
 
     /**
@@ -39,7 +70,6 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -55,17 +85,6 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu12 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
 
         jMenu1.setText("Експресионизъм");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -122,21 +141,11 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGap(0, 635, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGap(0, 409, Short.MAX_VALUE)
         );
 
         pack();
@@ -177,6 +186,7 @@ public class MainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -200,6 +210,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
