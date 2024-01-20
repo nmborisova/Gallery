@@ -5,6 +5,7 @@
  */
 package bg.smg.gallery.frames;
 
+import bg.smg.gallery.model.Data;
 import bg.smg.gallery.model.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,10 +87,6 @@ public class RegistrationForm extends javax.swing.JFrame{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -102,10 +99,15 @@ public class RegistrationForm extends javax.swing.JFrame{
                             .addComponent(jLabel4))
                         .addGap(41, 41, 41)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPwdNewPassword2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPwdNewPassword2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                             .addComponent(jPwdNewPassword, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTxtNewUserUsername, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(35, 35, 35))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +115,7 @@ public class RegistrationForm extends javax.swing.JFrame{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(28, 28, 28)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -131,7 +133,7 @@ public class RegistrationForm extends javax.swing.JFrame{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(58, 58, 58))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,10 +150,17 @@ public class RegistrationForm extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        //register
-    	String username = jTxtNewUserUsername.getText();
+        this.dispose();
+        LoginForm loginForm = new LoginForm(data);
+        loginForm.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+    // TODO add your handling code here:
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String username = jTxtNewUserUsername.getText();
     	String password = String.valueOf(jPwdNewPassword.getPassword());
         String password2 = String.valueOf(jPwdNewPassword2.getPassword());
 //    	String password = jPwdNewPassword.getPassword().toString();
@@ -176,16 +185,9 @@ public class RegistrationForm extends javax.swing.JFrame{
             data.users.add(user);
             this.dispose();
             LoginForm loginForm = new LoginForm(data);
-            loginForm.setVisible(true);           
-    }
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:                                        
-//        this.setVisible(false);
-    	this.dispose();
-        LoginForm loginForm = new LoginForm(data);
-        loginForm.setVisible(true);
-    }                                        
+            loginForm.setVisible(true); 
+    }//GEN-LAST:event_jButton1ActionPerformed
+                           
 
     /**
      * @param args the command line arguments

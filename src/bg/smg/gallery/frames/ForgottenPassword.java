@@ -5,6 +5,7 @@
  */
 package bg.smg.gallery.frames;
 
+import bg.smg.gallery.model.Data;
 import bg.smg.gallery.model.User;
 import javax.swing.JOptionPane;
 
@@ -154,7 +155,7 @@ public class ForgottenPassword extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

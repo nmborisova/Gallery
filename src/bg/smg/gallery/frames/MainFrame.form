@@ -9,6 +9,8 @@
             <Property name="text" type="java.lang.String" value="&#x415;&#x43a;&#x441;&#x43f;&#x440;&#x435;&#x441;&#x438;&#x43e;&#x43d;&#x438;&#x437;&#x44a;&#x43c;"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu1MouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu1MouseEntered"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu1ActionPerformed"/>
           </Events>
           <SubComponents>
@@ -30,7 +32,7 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#x41c;&#x443;&#x440;&#x43d;&#x430;&#x443; &#x432; &#x446;&#x44a;&#x440;&#x43a;&#x432;&#x430; I"/>
+                <Property name="text" type="java.lang.String" value="&#x41c;&#x443;&#x440;&#x43d;&#x430;&#x443; &#x441; &#x446;&#x44a;&#x440;&#x43a;&#x432;&#x430; I"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu1Item3"/>
@@ -43,6 +45,8 @@
             <Property name="text" type="java.lang.String" value="&#x418;&#x43c;&#x43f;&#x440;&#x435;&#x441;&#x438;&#x43e;&#x43d;&#x438;&#x437;&#x44a;&#x43c;"/>
           </Properties>
           <Events>
+            <EventHandler event="menuSelected" listener="javax.swing.event.MenuListener" parameters="javax.swing.event.MenuEvent" handler="jMenu2MenuSelected"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu2MouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu2ActionPerformed"/>
           </Events>
           <SubComponents>
@@ -67,6 +71,10 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x420;&#x43e;&#x43c;&#x430;&#x43d;&#x442;&#x438;&#x437;&#x44a;&#x43c;"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu3MouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu3ActionPerformed"/>
+          </Events>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="jMenu10">
               <Properties>
@@ -111,19 +119,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="83" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
               <Component id="jPanelPaintingFullScreen" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="127" max="32767" attributes="0"/>
+              <EmptySpace pref="181" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace pref="72" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="76" max="32767" attributes="0"/>
               <Component id="jPanelPaintingFullScreen" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="72" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -143,7 +151,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLblAuthorName" min="-2" pref="153" max="-2" attributes="0"/>
-                          <EmptySpace pref="223" max="32767" attributes="0"/>
+                          <EmptySpace pref="83" max="32767" attributes="0"/>
                           <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
