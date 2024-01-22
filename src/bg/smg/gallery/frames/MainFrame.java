@@ -85,11 +85,11 @@ public class MainFrame extends javax.swing.JFrame {
         paintings1.add(p);
         p = new Painting("Vassily Kandinsky", 300000000, 1910, "Wassily Kandinsky’s “Murnau With Church” I is a painting created at the start of his career in 1910. This artwork was painted at the peak of Kandinsky’s involvement with Fauvism, which resulted in the bright swathes of color. Although Kandinsky utilized modernist elements such as thick paint application and overlapping planes of color to highlight an abstracted landscape, there are still recognizable forms of the church and landscape which demonstrate minimal references to representation.", "Murnau_With_ChurchIcn.jpg", "Murnau_With_Church.jpg", 510,42 );
         paintings1.add(p);
-        p = new Painting("Ogi", 300000000, 2024, "our logo", "Expressionism1.png", "pic1", 175,280 );
+        p = new Painting("Ogi", 300000000, 2024, "our logo", "Expressionism1.png", "Expressionism1.png", 175,280 );
         paintings1.add(p);
-        p = new Painting("Ogi", 300000000, 2024, "our logo", "Expressionism2.png", "pic2", 275,281 );
+        p = new Painting("Ogi", 300000000, 2024, "our logo", "Expressionism2.png", "Expressionism2.png", 275,281 );
         paintings1.add(p);
-        p = new Painting("Ogi", 300000000, 2024, "our logo", "Expressionism3.png", "pic3", 375,281 );
+        p = new Painting("Ogi", 300000000, 2024, "our logo", "Expressionism3.png", "Expressionism3.png", 375,281 );
         paintings1.add(p);
         
         p = new Painting("Claude Monet", 300000000, 1872, "Impression, Sunrise is an 1872 painting by Claude Monet first shown at what would become known as the \"Exhibition of the Impressionists\" in Paris in April, 1874. The painting is credited with inspiring the name of the Impressionist movement.", "ImpressionIcn.jpg", "Impression.jpg", 56,38 );
@@ -98,11 +98,11 @@ public class MainFrame extends javax.swing.JFrame {
         paintings2.add(p);
         p = new Painting("Edgar Degas", 300000000, 1878, "Degas also produced bronze sculptures, prints, and drawings. Degas is especially identified with the subject of dance; more than half of his works depict dancers.[3] Although Degas is regarded as one of the founders of Impressionism, he rejected the term, preferring to be called a realist, and did not paint outdoors as many Impressionists did.", "DancerIcn.jpg", "Dancer.jpg", 510,41);
         paintings2.add(p);
-        p = new Painting("Ogi", 300000000, 2024, "our logo", "Impressionism1.png", "pic1", 175,280 );
+        p = new Painting("Ogi", 300000000, 2024, "our logo", "Impressionism1.png", "Impressionism1.png", 175,280 );
         paintings2.add(p);
-        p = new Painting("Ogi", 300000000, 2024, "our logo", "Impressionism2.png", "pic2", 275,281 );
+        p = new Painting("Ogi", 300000000, 2024, "our logo", "Impressionism2.png", "Impressionism2.png", 275,281 );
         paintings2.add(p);
-        p = new Painting("Ogi", 300000000, 2024, "our logo", "Expressionism3.png", "pic3", 375,281 );
+        p = new Painting("Ogi", 300000000, 2024, "our logo", "Expressionism3.png", "Expressionism3.png", 375,281 );
         paintings2.add(p);
         
         p = new Painting("Caspar David Friedrich", 300000000, 1818, "Wanderer above the Sea of Fog is a painting by Caspar David Friedrich made in 1818. It depicts a man standing upon a rocky precipice with his back to the viewer; he is gazing out on a landscape covered in a thick sea of fog through which other ridges, trees, and mountains pierce, which stretches out into the distance indefinitely.", "WandererIcn.jpg", "Wanderer.jpg", 55,38 );
@@ -111,11 +111,11 @@ public class MainFrame extends javax.swing.JFrame {
         paintings3.add(p);
         p = new Painting("Joseph M. W. Turner", 300000000, 1872, "info", "The_FightingIcn.jpg", "The_Fighting.jpg", 511,41 );
         paintings3.add(p);
-        p = new Painting("Ogi", 300000000, 2024, "our logo", "Romanticism1.png", "pic1", 175,280 );
+        p = new Painting("Ogi", 300000000, 2024, "our logo", "Romanticism1.png", "Romanticism1.png", 175,280 );
         paintings3.add(p);
-        p = new Painting("Ogi", 300000000, 2024, "our logo", "Romanticism2.png", "pic2", 275,281 );
+        p = new Painting("Ogi", 300000000, 2024, "our logo", "Romanticism2.png", "Romanticism2.png", 275,281 );
         paintings3.add(p);
-        p = new Painting("Ogi", 300000000, 2024, "our logo", "Romanticism3.png", "pic3", 375,281 );
+        p = new Painting("Ogi", 300000000, 2024, "our logo", "Romanticism3.png", "Romanticism3.png", 375,281 );
         paintings3.add(p);
     }
     
@@ -245,12 +245,27 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jMenu7.setText("Импресия, изгряващо слънце");
+        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu7MouseClicked(evt);
+            }
+        });
         jMenu2.add(jMenu7);
 
         jMenu8.setText("Сена в средата на деня");
+        jMenu8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu8MouseClicked(evt);
+            }
+        });
         jMenu2.add(jMenu8);
 
         jMenu9.setText("Танцьорка с букет цветя ");
+        jMenu9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu9MouseClicked(evt);
+            }
+        });
         jMenu2.add(jMenu9);
 
         jMenuBar1.add(jMenu2);
@@ -268,12 +283,27 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jMenu11.setText("Потъването на медуза");
+        jMenu11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu11MouseClicked(evt);
+            }
+        });
         jMenu3.add(jMenu11);
 
         jMenu12.setText("Темерер на буксир към последния пристън");
+        jMenu12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu12MouseClicked(evt);
+            }
+        });
         jMenu3.add(jMenu12);
 
         jMenu10.setText("Странник над море от мъгла");
+        jMenu10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu10MouseClicked(evt);
+            }
+        });
         jMenu3.add(jMenu10);
 
         jMenuBar1.add(jMenu3);
@@ -401,6 +431,49 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // init(1);
     }//GEN-LAST:event_jMenu1MouseEntered
+
+    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+        // TODO add your handling code here:
+        jLblAuthorName.setText("Claude Monet");
+        jLblPainting.setIcon(new ImageIcon("src/resources/Impression.jpg"));
+        jPanelPaintingFullScreen.setVisible(true);
+    }//GEN-LAST:event_jMenu7MouseClicked
+
+    private void jMenu8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu8MouseClicked
+        // TODO add your handling code here:
+        jLblAuthorName.setText("Alfred Sisley");
+        jLblPainting.setIcon(new ImageIcon("src/resources/Sisley_la_seine_au_point_du_jour_1877.jpg"));
+        jPanelPaintingFullScreen.setVisible(true);
+    }//GEN-LAST:event_jMenu8MouseClicked
+
+    private void jMenu9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu9MouseClicked
+        // TODO add your handling code here:
+        jLblAuthorName.setText("Edgar Degas");
+        jLblPainting.setIcon(new ImageIcon("src/resources/Dancer.jpg"));
+        jPanelPaintingFullScreen.setVisible(true);
+    }//GEN-LAST:event_jMenu9MouseClicked
+
+    private void jMenu11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu11MouseClicked
+        // TODO add your handling code here:
+        
+        jLblAuthorName.setText("Theodore Gericault");
+        jLblPainting.setIcon(new ImageIcon("src/resources/Raft.jpg"));
+        jPanelPaintingFullScreen.setVisible(true);
+    }//GEN-LAST:event_jMenu11MouseClicked
+
+    private void jMenu12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu12MouseClicked
+        // TODO add your handling code here:
+        jLblAuthorName.setText("Joseph M. W. Turner");
+        jLblPainting.setIcon(new ImageIcon("src/resources/The_Fighting.jpg"));
+        jPanelPaintingFullScreen.setVisible(true);
+    }//GEN-LAST:event_jMenu12MouseClicked
+
+    private void jMenu10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu10MouseClicked
+        // TODO add your handling code here:
+        jLblAuthorName.setText("Caspar David Friedrich");
+        jLblPainting.setIcon(new ImageIcon("src/resources/Wanderer.jpg"));
+        jPanelPaintingFullScreen.setVisible(true);
+    }//GEN-LAST:event_jMenu10MouseClicked
 
               
     /**
