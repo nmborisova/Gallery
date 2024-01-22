@@ -27,6 +27,8 @@ public class MainFrame extends javax.swing.JFrame {
         List<Painting> paintings1;
         List<Painting> paintings2;
         List<Painting> paintings3;
+         String absolutePath ;
+         JPanelWithBackground pnl;
     /**
      * Creates new form MainFrame
      */
@@ -50,28 +52,26 @@ public class MainFrame extends javax.swing.JFrame {
         
         loadPaintings();
         Path resourceDirectory = Paths.get("src","resources");
-        String absolutePath = resourceDirectory.toFile().getAbsolutePath();
+         absolutePath = resourceDirectory.toFile().getAbsolutePath();
         Image imgIcon = new ImageIcon(absolutePath+"/bg_gallery.jpeg").getImage();
-        JPanelWithBackground pnl = new JPanelWithBackground(imgIcon);
+        pnl = new JPanelWithBackground(imgIcon);
         pnl.setLayout(null);
         pnl.setBounds(0, 0, 635, 430);
         
-        
-        switch(TypeG) {
-            case 1: paintings=paintings1; break;
-            case 2: paintings=paintings2; break;
-            case 3: paintings=paintings3; break;
-            default: paintings=paintings1; break;
-        }       
+        paintings=paintings1;     
         for(Painting p:paintings) {
             JLabel img = new JLabel();
             ImageIcon icon = new ImageIcon(absolutePath+"/"+p.getIcon());
             img.setIcon(icon);
             img.setBounds(p.getX() ,p.getY() , icon.getIconWidth(), icon.getIconHeight());
-//            img.addMouseListener(l);
+            img.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    paintingFullScreen(p);
+                }
+            });
             pnl.add(img);
         }
-        getContentPane().removeAll();
+//        getContentPane().removeAll();
         getContentPane().add(pnl);
     }
     
@@ -109,7 +109,7 @@ public class MainFrame extends javax.swing.JFrame {
         paintings3.add(p);
         p = new Painting("Theodore Gericault", 300000000, 1819, "info", "RaftIcn.jpg", "Raft.jpg", 276,40 );
         paintings3.add(p);
-        p = new Painting("Joseph Mallord William Turner", 300000000, 1872, "info", "The_FightingIcn.jpg", "The_Fighting.jpg", 511,41 );
+        p = new Painting("Joseph M. W. Turner", 300000000, 1872, "info", "The_FightingIcn.jpg", "The_Fighting.jpg", 511,41 );
         paintings3.add(p);
         p = new Painting("Ogi", 300000000, 2024, "our logo", "Romanticism1.png", "pic1", 175,280 );
         paintings3.add(p);
@@ -143,9 +143,9 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu8 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
         jMenu11 = new javax.swing.JMenu();
         jMenu12 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -267,14 +267,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jMenu10.setText("Странник над море от мъгла");
-        jMenu3.add(jMenu10);
-
         jMenu11.setText("Потъването на медуза");
         jMenu3.add(jMenu11);
 
         jMenu12.setText("Темерер на буксир към последния пристън");
         jMenu3.add(jMenu12);
+
+        jMenu10.setText("Странник над море от мъгла");
+        jMenu3.add(jMenu10);
 
         jMenuBar1.add(jMenu3);
 
@@ -341,7 +341,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        // jPanelPaintingFullScreen.setVisible(true);
+         jPanelPaintingFullScreen.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
@@ -353,17 +353,48 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         // TODO add your handling code here:
-        init(2);
+        reloadPaintings(2);
     }//GEN-LAST:event_jMenu2MouseClicked
 
+    public void reloadPaintings(int epoha){
+        List<Painting> paintings = new ArrayList<>();
+        switch(epoha) {
+            case 1: paintings=paintings1; break;
+            case 2: paintings=paintings2; break;
+            case 3: paintings=paintings3; break;
+            default: paintings=paintings1; break;
+        }       
+        pnl.removeAll();
+        for(Painting p:paintings) {
+            JLabel img = new JLabel();
+            ImageIcon icon = new ImageIcon(absolutePath+"/"+p.getIcon());
+            img.setIcon(icon);
+            img.setBounds(p.getX() ,p.getY() , icon.getIconWidth(), icon.getIconHeight());
+            img.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    paintingFullScreen(p);
+                }
+            });
+            pnl.add(img);
+        }
+        pnl.repaint();
+    }
+    
+    public void paintingFullScreen(Painting p){
+        jLblAuthorName.setText(p.getAuthorName());
+        jLblPainting.setIcon(new ImageIcon("src/resources/" + p.getImage()));
+        // jLblPainting.setIcon(new ImageIcon("src/resources/Window.jpg"));
+        jPanelPaintingFullScreen.setVisible(true);
+    }
+    
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         // TODO add your handling code here:
-        init(3);
+        reloadPaintings(3);
     }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         // TODO add your handling code here:
-        init(1);
+        reloadPaintings(1);
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jMenu1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseEntered
