@@ -9,12 +9,18 @@ import bg.smg.gallery.model.JPanelWithBackground;
 import bg.smg.gallery.model.Painting;
 import bg.smg.gallery.model.User;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
 /**
@@ -29,6 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
         List<Painting> paintings3;
          String absolutePath ;
          JPanelWithBackground pnl;
+         JLabel imgNewPainting;
     /**
      * Creates new form MainFrame
      */
@@ -67,15 +74,51 @@ public class MainFrame extends javax.swing.JFrame {
             img.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     paintingFullScreen(p);
+                    jPanelNewPainting.setVisible(false);
                 }
             });
             pnl.add(img);
         }
 //        getContentPane().removeAll();
         getContentPane().add(pnl);
+        
+        imgNewPainting = new JLabel();
+        jPanelNewPainting.add(imgNewPainting);
+        jPanelNewPainting.setVisible(false);
     }
     
 
+    
+    public void paintingUpload(ActionEvent e) {
+       JFileChooser fileChooser = new JFileChooser();
+//       fileChooser.addChoosableFileFilter(new ImageFilter());
+       fileChooser.setAcceptAllFileFilterUsed(false);
+
+       int option = fileChooser.showOpenDialog(this);
+       if(option == JFileChooser.APPROVE_OPTION){
+          File file = fileChooser.getSelectedFile();
+//          label.setText("File Selected: " + file.getName());
+          try {               
+               Path resourceDirectory = Paths.get("src","resources");
+               String absolutePath = resourceDirectory.toFile().getAbsolutePath();
+              
+               FileChannel src = new FileInputStream(file).getChannel();
+               FileChannel dest = new FileOutputStream(new File(absolutePath+"/"+file.getName())).getChannel();
+               dest.transferFrom(src, 0, src.size());
+               src.close();
+               dest.close();
+               ImageIcon imgIcon = new ImageIcon(absolutePath+"/"+file.getName());
+               
+               imgNewPainting.setIcon(imgIcon);
+               imgNewPainting.setSize(imgIcon.getIconWidth(), imgIcon.getIconHeight());
+           } catch (Exception ex) {
+               // TODO Auto-generated catch block
+               ex.printStackTrace();
+           }
+       }else{
+//          label.setText("Open command canceled");
+       }
+    }
     
     private void loadPaintings(){
         //TODO file read
@@ -133,6 +176,11 @@ public class MainFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLblAuthorName = new javax.swing.JLabel();
         jLblPainting = new javax.swing.JLabel();
+        jPanelNewPainting = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -146,6 +194,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu11 = new javax.swing.JMenu();
         jMenu12 = new javax.swing.JMenu();
         jMenu10 = new javax.swing.JMenu();
+        jMenu13 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -180,6 +229,56 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLblPainting, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
                 .addContainerGap())
+        );
+
+        jTextField1.setText("jTextField1");
+
+        jLabel1.setText("jLabel1");
+
+        jButton2.setText("Save");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Upload");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelNewPaintingLayout = new javax.swing.GroupLayout(jPanelNewPainting);
+        jPanelNewPainting.setLayout(jPanelNewPaintingLayout);
+        jPanelNewPaintingLayout.setHorizontalGroup(
+            jPanelNewPaintingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelNewPaintingLayout.createSequentialGroup()
+                .addGroup(jPanelNewPaintingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelNewPaintingLayout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jButton2))
+                    .addGroup(jPanelNewPaintingLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1)
+                        .addGap(65, 65, 65)
+                        .addGroup(jPanelNewPaintingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(296, Short.MAX_VALUE))
+        );
+        jPanelNewPaintingLayout.setVerticalGroup(
+            jPanelNewPaintingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelNewPaintingLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanelNewPaintingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(56, 56, 56))
         );
 
         jMenu1.setText("Експресионизъм");
@@ -308,6 +407,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu13.setText("Добавяне на картина");
+        jMenu13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu13MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu13);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -318,6 +425,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(169, 169, 169)
                 .addComponent(jPanelPaintingFullScreen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(181, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanelNewPainting, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,6 +434,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(76, Short.MAX_VALUE)
                 .addComponent(jPanelPaintingFullScreen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanelNewPainting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -350,6 +461,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLblAuthorName.setText("Robert Delaunay");
         jLblPainting.setIcon(new ImageIcon("src/resources/Window.jpg"));
         jPanelPaintingFullScreen.setVisible(true);
+        jPanelNewPainting.setVisible(false);
     }//GEN-LAST:event_jMenu1Item1
 
     private void jMenu1Item2(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1Item2
@@ -358,6 +470,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLblAuthorName.setText("Edvard Munch");
         jLblPainting.setIcon(new ImageIcon("src/resources/The_Scream.jpg"));
         jPanelPaintingFullScreen.setVisible(true);
+        jPanelNewPainting.setVisible(false);
     }//GEN-LAST:event_jMenu1Item2
 
     private void jMenu1Item3(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1Item3
@@ -366,6 +479,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLblAuthorName.setText("Vassily Kandinsky");
         jLblPainting.setIcon(new ImageIcon("src/resources/Murnau_With_Church.jpg"));
         jPanelPaintingFullScreen.setVisible(true);
+        jPanelNewPainting.setVisible(false);
     }//GEN-LAST:event_jMenu1Item3
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -384,6 +498,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         // TODO add your handling code here:
         reloadPaintings(2);
+        jPanelNewPainting.setVisible(false);
     }//GEN-LAST:event_jMenu2MouseClicked
 
     public void reloadPaintings(int epoha){
@@ -420,16 +535,22 @@ public class MainFrame extends javax.swing.JFrame {
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         // TODO add your handling code here:
         reloadPaintings(3);
+        jPanelNewPainting.setVisible(false);
+        pnl.setVisible(true);
     }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         // TODO add your handling code here:
         reloadPaintings(1);
+        jPanelNewPainting.setVisible(false);
+        pnl.setVisible(true);
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jMenu1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseEntered
         // TODO add your handling code here:
         // init(1);
+        jPanelNewPainting.setVisible(false);
+        pnl.setVisible(true);
     }//GEN-LAST:event_jMenu1MouseEntered
 
     private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
@@ -437,6 +558,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLblAuthorName.setText("Claude Monet");
         jLblPainting.setIcon(new ImageIcon("src/resources/Impression.jpg"));
         jPanelPaintingFullScreen.setVisible(true);
+        jPanelNewPainting.setVisible(false);
+        pnl.setVisible(true);
     }//GEN-LAST:event_jMenu7MouseClicked
 
     private void jMenu8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu8MouseClicked
@@ -444,6 +567,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLblAuthorName.setText("Alfred Sisley");
         jLblPainting.setIcon(new ImageIcon("src/resources/Sisley_la_seine_au_point_du_jour_1877.jpg"));
         jPanelPaintingFullScreen.setVisible(true);
+        jPanelNewPainting.setVisible(false);
+        pnl.setVisible(true);
     }//GEN-LAST:event_jMenu8MouseClicked
 
     private void jMenu9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu9MouseClicked
@@ -451,6 +576,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLblAuthorName.setText("Edgar Degas");
         jLblPainting.setIcon(new ImageIcon("src/resources/Dancer.jpg"));
         jPanelPaintingFullScreen.setVisible(true);
+        jPanelNewPainting.setVisible(false);
+        pnl.setVisible(true);
     }//GEN-LAST:event_jMenu9MouseClicked
 
     private void jMenu11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu11MouseClicked
@@ -459,6 +586,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLblAuthorName.setText("Theodore Gericault");
         jLblPainting.setIcon(new ImageIcon("src/resources/Raft.jpg"));
         jPanelPaintingFullScreen.setVisible(true);
+        jPanelNewPainting.setVisible(false);
+        pnl.setVisible(true);
     }//GEN-LAST:event_jMenu11MouseClicked
 
     private void jMenu12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu12MouseClicked
@@ -466,6 +595,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLblAuthorName.setText("Joseph M. W. Turner");
         jLblPainting.setIcon(new ImageIcon("src/resources/The_Fighting.jpg"));
         jPanelPaintingFullScreen.setVisible(true);
+        jPanelNewPainting.setVisible(false);
+        pnl.setVisible(true);
     }//GEN-LAST:event_jMenu12MouseClicked
 
     private void jMenu10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu10MouseClicked
@@ -473,7 +604,26 @@ public class MainFrame extends javax.swing.JFrame {
         jLblAuthorName.setText("Caspar David Friedrich");
         jLblPainting.setIcon(new ImageIcon("src/resources/Wanderer.jpg"));
         jPanelPaintingFullScreen.setVisible(true);
+        jPanelNewPainting.setVisible(false);
+        pnl.setVisible(true);
     }//GEN-LAST:event_jMenu10MouseClicked
+
+    private void jMenu13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu13MouseClicked
+        // TODO add your handling code here:
+        jPanelPaintingFullScreen.setVisible(false);
+        pnl.setVisible(false);
+        jPanelNewPainting.setVisible(true);     
+    }//GEN-LAST:event_jMenu13MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Painting p = new Painting(jTextField1.getText(), 300000000, 1912, "In his Windows series, a group of twenty-two paintings made between April and December of 1912, Delaunay rejected painting’s traditional function as a window onto an imaginary world. Instead he turned to the pictorial surface as a place where the process of seeing itself could be recorded.", "WindowIcn.jpg", "Window.jpg", 55,39 );
+        paintings1.add(p);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        paintingUpload(evt);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
               
     /**
@@ -514,12 +664,16 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLblAuthorName;
     private javax.swing.JLabel jLblPainting;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
+    private javax.swing.JMenu jMenu13;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -529,6 +683,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanelNewPainting;
     private javax.swing.JPanel jPanelPaintingFullScreen;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
